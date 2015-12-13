@@ -1,3 +1,7 @@
+
+#Reading data into R
+
+#Only reads first 90 days aprox.
 todo<-read.csv("household_power_consumption.txt",header=TRUE,sep=";",dec=".",nrows=130000,stringsAsFactors = FALSE)
 todo$fulldate<-paste(todo$Date,todo$Time)
 todo$fulldate<-strptime(todo$fulldate,"%d/%m/%Y %R:%S")
@@ -21,14 +25,11 @@ todo$Sub_metering_2<-as.numeric(todo$Sub_metering_2)
 todo$Sub_metering_3<-as.numeric(todo$Sub_metering_3)
 
 
-#plot1.R
-png(filename="plot1.png",width = 480, height = 480) 
-    #units = "px", pointsize = 12,
-    #bg = "white", res = NA, family = "", restoreConsole = TRUE,
-    #type = c("windows", "cairo", "cairo-png"), antialias)
+#Plotting phase
 
+png(filename="plot1.png",width = 480, height = 480) 
+   
 hist(todo$Global_active_power,col="red",main = "Global Active Power",
      xlab = "Global Active Power (kilowatts)")
-     #,yaxt="n")
-#axis(side=2,at=seq(0,1200,by=200), labels=seq(0,1200,by=200))
+    
 dev.off()

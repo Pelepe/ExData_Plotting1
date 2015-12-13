@@ -1,3 +1,8 @@
+
+#Reading data into R
+
+#Only reads first 90 days aprox.
+
 todo<-read.csv("household_power_consumption.txt",header=TRUE,sep=";",dec=".",nrows=130000,stringsAsFactors = FALSE)
 todo$fulldate<-paste(todo$Date,todo$Time)
 todo$fulldate<-strptime(todo$fulldate,"%d/%m/%Y %R:%S")
@@ -21,6 +26,7 @@ todo$Sub_metering_2<-as.numeric(todo$Sub_metering_2)
 todo$Sub_metering_3<-as.numeric(todo$Sub_metering_3)
 
 
+#Plotting phase
 
 png(filename="plot4.png",width = 480, height = 480) 
 
@@ -48,3 +54,5 @@ plot(todo$fulldate,todo$Global_reactive_power,xlab="datetime",
      ylab= "Global_reactive_power",type="l")
 
 dev.off()
+
+#Important Note: Date Language (days in x axis) is spanish by Windows Default
